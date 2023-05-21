@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性：用来指定当前的映射文件和那个接口进行映射
+ 需要指定接口的文件路径 需要标注包的完整性-->
+<mapper namespace="com.king.blog.mapper.CommentMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into ms_comment(id, content, create_date, article_id, author_id, parent_id, to_uid, level)
+        VALUES (#{id}, #{content}, #{createDate}, #{articleId}, #{authorId}, #{parentId}, #{toUid}, #{level})
+    </insert>
+
+    <select id="selectAll" resultType="com.king.blog.pojo.Comment">
+        select *
+        from ms_comment
+    </select>
+    <!---->
+    <select id="selectById" resultType="com.king.blog.pojo.Comment">
+        select *
+        from ms_comment
+        where (article_id = #{articleId} and level = 1)
+        order by create_date desc
+    </select>
+
+    <select id="selectByIds" resultType="com.king.blog.pojo.Comment">
+        select *
+        from ms_comment
+        where (parent_id = #{parentId} and level = 2)
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性：用来指定当前的映射文件和那个接口进行映射
+ 需要指定接口的文件路径 需要标注包的完整性-->
+<mapper namespace="com.king.blog.mapper.TagMapper">
+    <resultMap id="tag" type="com.king.blog.pojo.Tag">
+        <id column="id" property="id"></id>
+        <result column="avatar" property="avatar"></result>
+        <result column="tag_name" property="tagName"></result>
+    </resultMap>
+    <!--查询全部数据-->
+    <select id="selectAll" resultMap="tag">
+        select *
+        from ms_tag;
+    </select>
+
+    <!--根据文章id 查询数据-->
+
+
+    <!--根据用户的热门文章查询数据-->
+    <select id="findAllByTagIdLimIt" parameterType="int" resultType="java.lang.Long">
+        select tag_id
+        from `ms_article_tag`
+        group by tag_id
+        order by count(*) desc limit #{limit}
+    </select>
+
+    <!--根据数据查询-->
+    <select id="findAllByTagIds" resultMap="tag">
+        select id, tag_name
+        from ms_tag
+        where id in
+        <foreach collection="tagIds" item="tagId" separator="," open="(" close=")">
+            #{tagId}
+        </foreach>
+    </select>
+
+    <select id="findTagsByArticleId" resultType="com.king.blog.pojo.Tag">
+        select id, avatar, tag_name as tagName
+        from ms_tag
+        where id in (select tag_id from ms_article_tag where article_id = #{articleId})
+    </select>
+
+    <!--根据标签id 查询数据-->
+    <select id="findAllDetailById" resultType="com.king.blog.pojo.Tag">
+        select *
+        from ms_tag
+        where id = #{id}
+    </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

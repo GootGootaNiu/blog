@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性：用来指定当前的映射文件和那个接口进行映射
+ 需要指定接口的文件路径 需要标注包的完整性-->
+<mapper namespace="com.king.blog.mapper.SysUserMapper">
+    <resultMap id="sysusers" type="com.king.blog.pojo.SysUser">
+        <id column="id" property="id"></id>
+        <result column="account" property="account"></result>
+        <result column="admin" property="admin"></result>
+        <result column="avatar" property="avatar"></result>
+        <result column="create_date" property="createDate"></result>
+        <result column="deleted" property="deleted"></result>
+        <result column="email" property="email"></result>
+        <result column="last_login" property="lastLogin"></result>
+        <result column="mobile_phone_number" property="mobilePhoneNumber"></result>
+        <result column="nickname" property="nickname"></result>
+        <result column="password" property="password"></result>
+        <result column="salt" property="salt"></result>
+        <result column="status" property="status"></result>
+    </resultMap>
+    <!--添加用户数据-->
+    <insert id="save">
+        insert into ms_sys_user(id, account, admin, avatar, create_date, deleted, email, last_login,
+                                mobile_phone_number,
+                                nickname, password, salt, status)
+        values (#{id}, #{account}, #{admin}, #{avatar}, #{createDate}, #{deleted}, #{email}, #{lastLogin},
+                #{mobilePhoneNumber}, #{nickname}, #{password}, #{salt}, #{status})
+    </insert>
+    <!--查询全部数据-->
+    <select id="selectAll" resultMap="sysusers">
+        select *
+        from ms_sys_user
+    </select>
+
+    <select id="findById" resultType="com.king.blog.pojo.SysUser">
+        select *
+        from ms_sys_user
+        where id = #{id}
+    </select>
+
+    <!--根据账户密码查询数据-->
+    <select id="fingUser" resultType="com.king.blog.pojo.SysUser">
+        select *
+        from ms_sys_user
+        where account = #{account}
+          and password = #{password}
+    </select>
+    <select id="findUserAccount" resultType="com.king.blog.pojo.SysUser">
+        select *
+        from ms_sys_user
+        where account = #{account}
+    </select>
+
+    <!--根据账户查询数据-->
+    <select id="fingUserByAccount" resultType="com.king.blog.pojo.SysUser">
+        select *
+        from ms_sys_user
+        where account = #{account}
+    </select>
+    <!--根据id 查询作者信息-->
+    <select id="findUserByAuthorId" resultType="com.king.blog.pojo.SysUser">
+        select *
+        from ms_sys_user
+        where id = #{id}
+    </select>
+
+
+    <!--根据id 查询数据-->
+    <!--    <select id="findById" resultMap="sysusers">-->
+    <!--        select *-->
+    <!--        from ms_sys_user-->
+    <!--        where id = #{id}-->
+    <!--    </select>-->
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

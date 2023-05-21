@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性：用来指定当前的映射文件和那个接口进行映射
+ 需要指定接口的文件路径 需要标注包的完整性-->
+<mapper namespace="com.king.blog.mapper.ArticleTagMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into ms_article_tag(id, article_id, tag_id)
+        VALUES (#{id}, #{articleId}, #{tagId})
+    </insert>
+
+    <!--根据TagId 查询标签中的数据-->
+    <select id="selectAllById" resultType="com.king.blog.pojo.ArticleTag">
+        select *
+        from ms_article_tag
+        where tag_id = #{tagId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
